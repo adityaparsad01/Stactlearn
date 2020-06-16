@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import './App.css'
 
 const Pincode = () =>{
   const [num, setNum] = useState()
@@ -9,6 +10,7 @@ const Pincode = () =>{
 
 
   useEffect(()=>{
+   document.title = `${num}`;
     async function getData(){
       const res = await axios.get(`https://api.zippopotam.us/IN/${num}`)
       console.log(res.data.places.length)
@@ -18,6 +20,7 @@ const Pincode = () =>{
     getData()
   })
   return (<>
+  <div className="card">
   <h1>You PinCode is {num}  </h1>
   <input type="number" value={num} onChange={(e)=>{
     setNum(e.target.value)
@@ -25,6 +28,7 @@ const Pincode = () =>{
   </input>
   <h1>{setState}</h1>
   <h2>Total Number of Places in {num} is {place}</h2>
+  </div>
   </>)
 } 
 export default Pincode
